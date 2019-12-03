@@ -1,4 +1,5 @@
 import CryptoSwift
+import Base58
 
 public struct BIP32 {
     let publicKey: [UInt8]

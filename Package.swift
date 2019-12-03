@@ -12,6 +12,7 @@ let package = Package(
             targets: ["BIP32"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/pengpengliu/Base58.git", .branch("master")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.0.0")),
     ],
     targets: [
@@ -19,7 +20,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "BIP32",
-            dependencies: ["CryptoSwift"]),
+            dependencies: ["CryptoSwift", "Base58"]),
         .testTarget(
             name: "BIP32Tests",
             dependencies: ["BIP32"]),
