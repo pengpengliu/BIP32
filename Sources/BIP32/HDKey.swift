@@ -20,7 +20,7 @@ public struct HDKey {
     
     private let highestBit: UInt32 = 0x80000000
     
-    init(privateKey: [UInt8], chainCode: [UInt8], depth: UInt8 = 0, childIndex: UInt32 = 0, parentFingerprint: UInt32 = 0x00000000) {
+    public init(privateKey: [UInt8], chainCode: [UInt8], depth: UInt8 = 0, childIndex: UInt32 = 0, parentFingerprint: UInt32 = 0x00000000) {
         self.privateKey = privateKey
         let pubkey = ECC.computePublicKey(fromPrivateKey: Data(privateKey), compression: true).bytes
         self.publicKey = pubkey
@@ -31,7 +31,7 @@ public struct HDKey {
         self.childIndex = childIndex
     }
     
-    init(publicKey: [UInt8], chainCode: [UInt8], depth: UInt8 = 0, childIndex: UInt32 = 0, parentFingerprint: UInt32 = 0x00000000) {
+    public init(publicKey: [UInt8], chainCode: [UInt8], depth: UInt8 = 0, childIndex: UInt32 = 0, parentFingerprint: UInt32 = 0x00000000) {
         self.privateKey = nil
         self.publicKey = publicKey
         self.chainCode = chainCode
@@ -41,7 +41,7 @@ public struct HDKey {
         self.childIndex = childIndex
     }
     
-    init(seed: [UInt8]) {
+    public init(seed: [UInt8]) {
         let bytes = Crypto101.Hash.hmacsha512(Data(seed), key: Data([UInt8]("Bitcoin seed".utf8)))
         let priv = Array(bytes[0..<32])
         self.privateKey = priv
@@ -51,11 +51,11 @@ public struct HDKey {
         self.fingerprint = Hash.sha256ripemd160(Data(pubkey)).withUnsafeBytes { $0.load(as: UInt32.self) }
     }
     
-    func neutered() -> Self {
+    public func neutered() -> Self {
         return HDKey(publicKey: self.publicKey, chainCode: self.chainCode, depth: self.depth, childIndex: self.childIndex)
     }
     
-    func derive(path: String) throws -> Self? {
+    public func derive(path: String) throws -> Self? {
         var key = self
         var path = path
         if path == "m" || path == "/" || path == "" {
@@ -83,12 +83,12 @@ public struct HDKey {
         return key
     }
     
-    func deriveHardened(index: UInt32) throws -> Self? {
+    public func deriveHardened(index: UInt32) throws -> Self? {
         return try derive(index: index + highestBit)
     }
     
     // https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#child-key-derivation-ckd-functions
-    func derive(index: UInt32) throws -> Self? {
+    public func derive(index: UInt32) throws -> Self? {
         let isHardened = index >= highestBit
         var bytes: [UInt8] = []
 
@@ -205,7 +205,7 @@ public struct HDKey {
     }
     
     // The 4 byte header that serializes in base58 to "xprv", default bitcoin
-    func toBase58() -> String {
+    public func toBase58() -> String {
         var data: [UInt8] = []
         // 4 bytes: prefix bytes
         if let _ = self.privateKey {
