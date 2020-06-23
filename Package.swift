@@ -12,7 +12,7 @@ let package = Package(
             targets: ["BIP32"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pengpengliu/Base58.git", .branch("master")),
+        .package(url: "https://github.com/pengpengliu/Base58.git", from: "1.0.0"),
         .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.2.2")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift", .upToNextMinor(from: "1.3.1")),
         .package(name: "secp256k1", url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0")
