@@ -41,6 +41,24 @@ public struct HDKey {
         self.childIndex = childIndex
     }
     
+    public init(serialized: String) {
+        let decoded = Base58.decode(serialized)
+        let version = Array(decoded[0..<4])
+        if (version == [0x04, 0x88, 0xad, 0xe4]) {
+            let priv = Array(decoded[46..<78])
+            self.privateKey = priv
+            let pubkey = ECC.computePublicKey(fromPrivateKey: Data(priv), compression: true).bytes
+            self.publicKey = pubkey
+        } else {
+            self.privateKey = nil
+            self.publicKey = Array(decoded[45..<78])
+        }
+        self.fingerprint = Data(decoded[5..<9]).withUnsafeBytes { $0.load(as: UInt32.self) }
+        self.depth = Data(decoded[4..<5]).withUnsafeBytes { $0.load(as: UInt8.self) }
+        self.chainCode = Array(decoded[13..<45])
+        self.childIndex = Data(decoded[9..<13]).withUnsafeBytes { $0.load(as: UInt32.self) }
+    }
+    
     public init(seed: [UInt8]) {
         let bytes = try! Crypto101.Hash.hmacsha512(Data(seed), key: Data([UInt8]("Bitcoin seed".utf8)))
         let priv = Array(bytes[0..<32])
