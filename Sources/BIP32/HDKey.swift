@@ -9,12 +9,12 @@ public enum DerivationError : Error {
 }
 
 public struct HDKey {
-    let privateKey: [UInt8]?
-    let publicKey: [UInt8]
-    let chainCode: [UInt8]
-    var depth: UInt8 = 0
-    var fingerprint: UInt32 = 0x00000000
-    var childIndex: UInt32 = 0x00000000
+    public let privateKey: [UInt8]?
+    public let publicKey: [UInt8]
+    public let chainCode: [UInt8]
+    public var depth: UInt8 = 0
+    public var fingerprint: UInt32 = 0x00000000
+    public var childIndex: UInt32 = 0x00000000
     
     var parentFingerprint: UInt32 = 0x00000000
     
