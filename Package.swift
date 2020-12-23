@@ -13,8 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pengpengliu/Base58.git", from: "1.0.0"),
-        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.2.2")),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", .upToNextMinor(from: "1.3.1")),
+        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.3.0")),
         .package(name: "secp256k1", url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0"),
     ],
     targets: [
@@ -22,7 +21,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "BIP32",
-            dependencies: ["Base58", "Crypto101", "CryptoSwift", "secp256k1"]),
+            dependencies: ["Base58", "Crypto101"]),
         .testTarget(
             name: "BIP32Tests",
             dependencies: ["BIP32"]),
