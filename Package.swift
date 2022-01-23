@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "BIP32",
+    platforms: [
+        .macOS(.v10_14), .iOS(.v11),
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -13,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pengpengliu/Base58.git", from: "1.0.0"),
-        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.3.0")),
+        .package(url: "https://github.com/pengpengliu/Crypto101.git", .upToNextMinor(from: "0.4.0")),
         .package(name: "secp256k1", url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0"),
     ],
     targets: [

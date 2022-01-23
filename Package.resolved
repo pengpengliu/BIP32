@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Base58",
+        "repositoryURL": "https://github.com/pengpengliu/Base58.git",
+        "state": {
+          "branch": null,
+          "revision": "8f69c52c585733f0aa4c342a86beecdd7606fd82",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Crypto101",
+        "repositoryURL": "https://github.com/pengpengliu/Crypto101.git",
+        "state": {
+          "branch": null,
+          "revision": "e98df5f5548ff6d8871fbd9dfc8d55cf5331b916",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift",
+        "state": {
+          "branch": null,
+          "revision": "4b0565384d3c4c588af09e660535b2c7c9bf5b39",
+          "version": "1.4.2"
+        }
+      },
+      {
+        "package": "secp256k1",
+        "repositoryURL": "https://github.com/Boilertalk/secp256k1.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "823281fe9def21b384099b72a9a53ca988317b20",
+          "version": "0.1.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
