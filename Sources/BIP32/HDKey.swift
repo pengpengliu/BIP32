@@ -258,6 +258,7 @@ extension BInt {
 enum ECC {
     static func computePublicKey(fromPrivateKey privateKey: Data, compression: Bool) -> Data {
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN) | UInt32(SECP256K1_CONTEXT_VERIFY))!
+        defer { secp256k1_context_destroy(ctx) }
 
         // *** Generate public key ***
         let pubKey = malloc(MemoryLayout<secp256k1_pubkey>.size)!.assumingMemoryBound(to: secp256k1_pubkey.self)
